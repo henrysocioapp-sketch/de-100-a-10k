@@ -107,13 +107,18 @@ describe('Score Calculation (5 casos)', () => {
 
   // TC010: Categorías individuales
   test('TC010: category scores calculated separately', () => {
+    // q1 (strategy) tiene maxScore 6 → todas las correctas = 100%
+    // q3 (sales) tiene maxScore 8 → todas las correctas = 100%
     const answers = {
       q1: ['q1-a', 'q1-c', 'q1-d'],
+      q6: ['q6-a', 'q6-b', 'q6-c', 'q6-d'], // otra de strategy
       q3: ['q3-a', 'q3-b', 'q3-c', 'q3-d'],
+      q8: ['q8-a', 'q8-b', 'q8-c'], // otra de sales
     };
     const result = calculateQuizResult(answers);
     expect(result.categoryScores.strategy.percentage).toBe(100);
     expect(result.categoryScores.sales.percentage).toBe(100);
+    expect(result.categoryScores.marketing.percentage).toBe(0);
   });
 
   // TC011: 50% threshold
